@@ -43,7 +43,7 @@ export const AditionalInfoContainerLi = styled.li`
 export const AditionalInfoLink = styled(NavLink)`
   font-size: 20px;
   font-weight: 500;
-  color: #157993;
+  color: grey;
 
   &:hover {
     color: #31517e;
