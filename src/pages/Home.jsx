@@ -1,38 +1,38 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { fetchTrendingMovies } from 'ApiService/ApiService';
+import MovieList from 'components/MovieList/MovieList';
+import Loader from 'components/Loader/Loader';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    fetchTrendingMovies().then(setMovies);
+    const fetchMovies = async () => {
+      try {
+        const trendingMovies = await fetchTrendingMovies();
+        setMovies(trendingMovies);
+      } catch (error) {
+        console.log('error', error);
+        setMovies([]);
+      }
+    };
+
+    fetchMovies();
   }, []);
 
-  useEffect(() => {
-    console.log(movies);
-  }, [movies]);
+  if (!movies.length) {
+    return (
+      <div>
+        <Loader />
+      </div>
+    );
+  }
 
   return (
     <>
-      <div
-        style={{
-          // height: '100vh',
-          display: 'flex',
-          justifyContent: 'center',
-          fontSize: 40,
-          color: '#010101',
-        }}
-      ></div>
       <h1>Trending today</h1>
       <div>
-        <ul style={{ listStyle: 'none' }}>
-          {movies.map(movie => (
-            <li key={movie.id}>
-              <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
-            </li>
-          ))}
-        </ul>
+        <MovieList movies={movies} />
       </div>
     </>
   );
