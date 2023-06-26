@@ -59,3 +59,13 @@ export const fetchMovieSearch = async query => {
     return [];
   }
 };
+
+export const fetchMovieVideo = async movieId => {
+  try {
+    const { data } = await axios.get(`/movie/${movieId}/videos`);
+    return data.results;
+  } catch (error) {
+    console.log('error', { error });
+    return [];
+  }
+};
