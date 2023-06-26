@@ -36,6 +36,6 @@ export const CastName = styled.h2`
 
 export const CastCharacter = styled.p`
   font-size: 14px;
-  color: #666;
+  color: black;
   margin-bottom: 10px;
 `;
