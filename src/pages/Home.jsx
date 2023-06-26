@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { fetchTrendingMovies } from 'ApiService/ApiService';
 import MovieList from 'components/MovieList/MovieList';
 import Loader from 'components/Loader/Loader';
@@ -29,12 +29,12 @@ const Home = () => {
   }
 
   return (
-    <>
+    <Suspense>
       <h1>Trending today</h1>
       <div>
         <MovieList movies={movies} />
       </div>
-    </>
+    </Suspense>
   );
 };
 

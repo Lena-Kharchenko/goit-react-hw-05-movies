@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import PropTypes from 'prop-types';
 import {
   CastContainer,
@@ -28,30 +28,32 @@ const Cast = () => {
   }, [movieId]);
 
   return (
-    <CastContainer>
-      {cast.length > 0 ? (
-        <CastList>
-          {cast.map(actor => (
-            <CastItem key={actor.id}>
-              <CastImage
-                src={
-                  `https://image.tmdb.org/t/p/w500${actor.profile_path}` ||
-                  defaultImage
-                }
-                alt={actor.name}
-                onError={e => {
-                  e.target.src = defaultImage;
-                }}
-              />
-              <CastName>{actor.name}</CastName>
-              <CastCharacter>Character: {actor.character}</CastCharacter>
-            </CastItem>
-          ))}
-        </CastList>
-      ) : (
-        <p>We don't have any cast for this movie</p>
-      )}
-    </CastContainer>
+    <Suspense>
+      <CastContainer>
+        {cast.length > 0 ? (
+          <CastList>
+            {cast.map(actor => (
+              <CastItem key={actor.id}>
+                <CastImage
+                  src={
+                    `https://image.tmdb.org/t/p/w500${actor.profile_path}` ||
+                    defaultImage
+                  }
+                  alt={actor.name}
+                  onError={e => {
+                    e.target.src = defaultImage;
+                  }}
+                />
+                <CastName>{actor.name}</CastName>
+                <CastCharacter>Character: {actor.character}</CastCharacter>
+              </CastItem>
+            ))}
+          </CastList>
+        ) : (
+          <p>We don't have any cast for this movie</p>
+        )}
+      </CastContainer>
+    </Suspense>
   );
 };
 

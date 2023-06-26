@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import GoBackBtn from 'components/GoBackBtn/GoBackBtn';
 import MovieVideo from 'components/MovieVideo/MovieVideo';
 import { useEffect, useState, useRef } from 'react';
-import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
+import { useParams, Outlet, useLocation } from 'react-router-dom';
 import { fetchMovieDetails } from 'ApiService/ApiService';
 import Loader from 'components/Loader/Loader';
 import {
@@ -13,6 +13,8 @@ import {
   MovieOverview,
   ButtonTrailer,
   AditionalInfoContainer,
+  AditionalInfoContainerLi,
+  AditionalInfoLink,
 } from '.././components/MovieDetails/MovieDetails.styled';
 
 const defaultImage =
@@ -94,12 +96,13 @@ const MovieDetails = () => {
       <AditionalInfoContainer>
         <h2>Additional information</h2>
         <ul>
-          <li>
-            <Link to="cast">Cast</Link>
-          </li>
-          <li>
-            <Link to="reviews">Reviews</Link>
-          </li>
+          <AditionalInfoContainerLi>
+            <AditionalInfoLink to="cast">Cast</AditionalInfoLink>
+          </AditionalInfoContainerLi>
+
+          <AditionalInfoContainerLi>
+            <AditionalInfoLink to="reviews">Reviews</AditionalInfoLink>
+          </AditionalInfoContainerLi>
         </ul>
       </AditionalInfoContainer>
       <Suspense

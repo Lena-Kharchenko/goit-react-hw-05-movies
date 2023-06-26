@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 export const MovieDetailsContainer = styled.div`
   display: flex;
@@ -33,6 +34,20 @@ export const AditionalInfoContainer = styled.div`
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+`;
+
+export const AditionalInfoContainerLi = styled.li`
+  list-style: none;
+`;
+
+export const AditionalInfoLink = styled(NavLink)`
+  font-size: 20px;
+  font-weight: 500;
+  color: #157993;
+
+  &:hover {
+    color: #31517e;
+  }
 `;
 
 export const ButtonTrailer = styled.button`

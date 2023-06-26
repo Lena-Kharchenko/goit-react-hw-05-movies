@@ -1,5 +1,5 @@
 import Search from 'components/Search/Search';
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, Suspense } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { fetchMovieSearch } from 'ApiService/ApiService';
@@ -51,10 +51,12 @@ const Movies = () => {
   }, [searchParams, handleSearchSubmit]);
 
   return (
-    <div>
-      <Search onSubmit={handleSearchSubmit} />
-      <MovieList movies={searchResults} />
-    </div>
+    <Suspense>
+      <div>
+        <Search onSubmit={handleSearchSubmit} />
+        <MovieList movies={searchResults} />
+      </div>
+    </Suspense>
   );
 };
 
