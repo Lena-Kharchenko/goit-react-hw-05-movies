@@ -1,28 +1,32 @@
-import { Link, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import { Suspense } from 'react';
+import { StyledList, StyledLink } from './Header.styled';
+import Loader from 'components/Loader/Loader';
 
 const Header = () => {
   return (
-    <div>
-      <ul
-        style={{
-          display: 'flex',
-          gap: 20,
-          alignItems: 'center',
-          padding: 20,
-          listStyle: 'none',
-          boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
-          borderBottom: '1px solid black',
-        }}
+    <div
+      style={{
+        padding: '20px',
+      }}
+    >
+      <StyledList>
+        <li>
+          <StyledLink to="/">Home</StyledLink>
+        </li>
+        <li>
+          <StyledLink to="movies">Movies</StyledLink>
+        </li>
+      </StyledList>
+      <Suspense
+        fallback={
+          <div>
+            <Loader />
+          </div>
+        }
       >
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="movies">Movies</Link>
-        </li>
-      </ul>
-
-      <Outlet />
+        <Outlet />
+      </Suspense>
     </div>
   );
 };
