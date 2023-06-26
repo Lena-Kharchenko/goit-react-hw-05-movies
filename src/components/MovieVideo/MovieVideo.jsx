@@ -1,0 +1,49 @@
+import { fetchMovieVideo } from 'ApiService/ApiService';
+import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
+
+const MovieVideo = ({ movieId }) => {
+  const [video, setVideo] = useState([]);
+
+  useEffect(() => {
+    const fetchVideo = async () => {
+      try {
+        const videoData = await fetchMovieVideo(movieId);
+        setVideo(videoData);
+      } catch (error) {
+        console.log('error', error);
+        setVideo([]);
+      }
+    };
+
+    if (movieId) {
+      fetchVideo();
+    }
+  }, [movieId]);
+
+  return (
+    <div
+      style={{
+        marginTop: 20,
+        display: 'flex',
+        justifyContent: 'center',
+      }}
+    >
+      {video.length > 0 && (
+        <iframe
+          title="trailer"
+          width="560"
+          height="315"
+          src={`https://www.youtube.com/embed/${video[0].key}`}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        ></iframe>
+      )}
+    </div>
+  );
+};
+
+MovieVideo.propTypes = {
+  movieId: PropTypes.string.isRequired,
+};
+
+export default MovieVideo;

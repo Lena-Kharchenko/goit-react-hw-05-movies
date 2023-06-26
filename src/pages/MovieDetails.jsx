@@ -1,6 +1,5 @@
 import { Suspense } from 'react';
-
-import ButtonBack from 'components/ButtonBack/ButtonBack';
+import GoBackBtn from 'components/GoBackBtn/GoBackBtn';
 import MovieVideo from 'components/MovieVideo/MovieVideo';
 import { useEffect, useState, useRef } from 'react';
 import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
@@ -17,8 +16,7 @@ import {
 } from '.././components/MovieDetails/MovieDetails.styled';
 
 const defaultImage =
-  // 'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
-  'https://ua.depositphotos.com/186121304/stock-photo-message-about-page-not-found';
+  'https://internetdevels.com/sites/default/files/public/blog_preview/404_page_cover.jpg';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -56,7 +54,7 @@ const MovieDetails = () => {
 
   return (
     <div>
-      <ButtonBack location={locationRef.current} />
+      <GoBackBtn location={locationRef.current} />
       <div>
         <MovieDetailsContainer>
           <MovieImage
