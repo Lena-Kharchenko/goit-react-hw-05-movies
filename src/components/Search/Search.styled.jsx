@@ -16,7 +16,7 @@ export const SearchButton = styled.button`
   margin-left: 0.5rem;
   padding: 0.5rem 1rem;
   font-size: 1rem;
-  background-color: #f44336;
+  background-color: #157993;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -24,6 +24,6 @@ export const SearchButton = styled.button`
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: #d32f2f;
+    background-color: #17a3a1;
   }
 `;
