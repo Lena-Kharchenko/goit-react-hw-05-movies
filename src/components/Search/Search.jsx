@@ -1,31 +1,50 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
+import { SearchForm, SearchInput, SearchButton } from './Search.styled';
+import { ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Search = ({ onSubmit }) => {
   const [query, setQuery] = useState('');
 
   const handleSearchSubmit = e => {
     e.preventDefault();
+    if (query.trim() === '') {
+      toast.warn('Please enter a search query', {
+        position: toast.POSITION.TOP_CENTER,
+      });
+      return;
+    }
     onSubmit(query);
+
     setQuery('');
+  };
+
+  const handleInputChange = e => {
+    setQuery(e.target.value);
   };
 
   return (
     <div>
-      <form>
-        <input
+      <ToastContainer />
+      <SearchForm onSubmit={handleSearchSubmit}>
+        <SearchInput
           type="text"
           autoComplete="off"
           autoFocus
           placeholder="Search movies"
           value={query}
-          onChange={e => setQuery(e.target.value)}
+          onChange={handleInputChange}
         />
-        <button type="submit" onSubmit={handleSearchSubmit}>
-          Search
-        </button>
-      </form>
+        <SearchButton type="submit">Search</SearchButton>
+      </SearchForm>
     </div>
   );
+};
+
+Search.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
 };
 
 export default Search;
