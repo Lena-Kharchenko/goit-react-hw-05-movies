@@ -50,19 +50,19 @@ export const AditionalInfoLink = styled(NavLink)`
   }
 `;
 
-export const ButtonTrailer = styled.button`
-  margin-top: 20px;
-  padding: 10px 15px;
-  font-size: 16px;
-  background-color: #157993;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  font-weight: 700;
+// export const ButtonTrailer = styled.button`
+//   margin-top: 20px;
+//   padding: 10px 15px;
+//   font-size: 16px;
+//   background-color: #157993;
+//   color: white;
+//   border: none;
+//   border-radius: 4px;
+//   cursor: pointer;
+//   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+//   font-weight: 700;
 
-  &:hover {
-    background-color: #17a3a1;
-  }
-`;
+//   &:hover {
+//     background-color: #17a3a1;
+//   }
+// `;

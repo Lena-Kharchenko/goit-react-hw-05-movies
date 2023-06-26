@@ -1,6 +1,5 @@
 import { Suspense } from 'react';
 import GoBackBtn from 'components/GoBackBtn/GoBackBtn';
-import MovieVideo from 'components/MovieVideo/MovieVideo';
 import { useEffect, useState, useRef } from 'react';
 import { useParams, Outlet, useLocation } from 'react-router-dom';
 import { fetchMovieDetails } from 'ApiService/ApiService';
@@ -11,7 +10,6 @@ import {
   MovieInfoContainer,
   MovieScore,
   MovieOverview,
-  ButtonTrailer,
   AditionalInfoContainer,
   AditionalInfoContainerLi,
   AditionalInfoLink,
@@ -23,7 +21,6 @@ const defaultImage =
 const MovieDetails = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
-  const [showTrailer, setShowTrailer] = useState(false);
 
   const location = useLocation();
   const locationRef = useRef(location);
@@ -41,10 +38,6 @@ const MovieDetails = () => {
 
     fetchMovieData();
   }, [movieId]);
-
-  const handleWatchTrailer = () => {
-    setShowTrailer(true);
-  };
 
   if (!movie) {
     return (
@@ -86,13 +79,6 @@ const MovieDetails = () => {
         </MovieDetailsContainer>
       </div>
 
-      {!showTrailer ? (
-        <ButtonTrailer onClick={handleWatchTrailer} type="butoon">
-          Watch Trailer
-        </ButtonTrailer>
-      ) : (
-        <MovieVideo movieId={movieId} />
-      )}
       <AditionalInfoContainer>
         <h2>Additional information</h2>
         <ul>
